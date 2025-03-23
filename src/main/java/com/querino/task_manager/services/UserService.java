@@ -1,16 +1,16 @@
 package com.querino.task_manager.services;
 
-import com.querino.task_manager.models.User;
+import com.querino.task_manager.dtos.UserCreateDto;
+import com.querino.task_manager.dtos.UserResponseDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
-    User save(User user);
+    UserResponseDto save(UserCreateDto userDto);
 
-    List<User> findAll();
+    List<UserResponseDto> findAll();
 
-    Optional<User> findById(Long id);
+    UserResponseDto findById(Long id);
 
     void deleteById(Long id);
 }

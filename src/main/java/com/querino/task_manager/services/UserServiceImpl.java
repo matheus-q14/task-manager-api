@@ -1,12 +1,16 @@
 package com.querino.task_manager.services;
 
-import com.querino.task_manager.models.User;
+import com.querino.task_manager.dtos.UserCreateDto;
+import com.querino.task_manager.dtos.UserResponseDto;
+import com.querino.task_manager.entities.User;
 import com.querino.task_manager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -14,18 +18,36 @@ public class UserServiceImpl implements UserService {
     private UserRepository repository;
 
     @Override
-    public User save(User user) {
-        return repository.save(user);
+    public UserResponseDto save(UserCreateDto userDto) {
+        User user = new User(userDto.nome(), userDto.email());
+        repository.save(user);
+        return new UserResponseDto(user.getUserId(), user.getNome(), user.getEmail(), user.getNomeTarefas());
     }
 
     @Override
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<UserResponseDto> findAll() {
+        List<User> users = repository.findAll();
+        List<UserResponseDto> userResponse = new ArrayList<>();
+        users.forEach(user -> userResponse.add(new UserResponseDto(
+                user.getUserId(),
+                user.getNome(),
+                user.getEmail(),
+                user.getNomeTarefas()
+        )));
+        return userResponse;
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return repository.findById(id);
+    public UserResponseDto findById(Long id) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        UserResponseDto userResponse = new UserResponseDto(
+                user.getUserId(),
+                user.getNome(),
+                user.getEmail(),
+                user.getNomeTarefas()
+        );
+        return userResponse;
     }
 
     @Override

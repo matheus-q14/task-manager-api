@@ -1,17 +1,19 @@
 package com.querino.task_manager.services;
 
-import com.querino.task_manager.models.Task;
+import com.querino.task_manager.dtos.TaskCreateDto;
+import com.querino.task_manager.dtos.TaskResponseDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TaskService {
 
-    Task save(Task task);
+    TaskResponseDto save(Long userId, TaskCreateDto taskCreateDto);
 
-    List<Task> findByUserId(Long id);
+    List<TaskResponseDto> findAll();
 
-    Optional<Task> findById(Long id);
+    List<TaskResponseDto> findByUserId(Long id);
+
+    TaskResponseDto findById(Long id);
 
     void deleteById(Long id);
 }
