@@ -1,4 +1,4 @@
-# TarefaAPI - Gerenciamento de Tarefas
+# TaskManager API - Gerenciamento de Tarefas
 
 Este é um projeto de uma API RESTful simples para o gerenciamento de usuários e suas tarefas. Desenvolvida seguindo o
 padrão MVC (Model-View-Controller) e a arquitetura de camadas,
