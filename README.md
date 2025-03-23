@@ -51,7 +51,7 @@ Antes de rodar a aplicação, é necessário ter os seguintes itens instalados:
 #### Clone o repositório:
 
 ```shell
-    git clone https://github.com/seu-usuario/tarefaapi.git
+git clone https://github.com/matheus-q14/task-manager-api.git
 ```
 
 #### Configure o banco de dados:
@@ -78,7 +78,7 @@ Navegue até o diretório do projeto e execute o comando abaixo para instalar as
 Maven:
 
 ```shell
-    mvn clean install
+mvn clean install
 ```
 
 #### Execute a aplicação:
@@ -86,7 +86,7 @@ Maven:
 Para rodar a aplicação, execute o seguinte comando:
 
 ```shell
-    mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 A API estará disponível em http://localhost:8080 (por padrão).
